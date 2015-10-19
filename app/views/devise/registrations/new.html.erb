@@ -1,4 +1,25 @@
-<h2>Sign up</h2>
+<h2>Plans</h2>
+<div class="container">
+  <div class="row">
+    <ul class="list-group col-sm-6">
+      <li class="list-group-item list-group-item-success">FREE</li>
+      <li class="list-group-item">Free</li>
+      <li class="list-group-item">Unlimited public wikis</li>
+      <li class="list-group-item">No private wiki</li>
+      <li class="list-group-item">No suppport</li>
+      <li class="btn btn-success btn-lg"> select</li>
+    </ul>
+    <ul class="list-group col-sm-6">
+      <li class="list-group-item list-group-item-warning">PREMIUM</li>
+      <li class="list-group-item">$9.99/mo</li>
+      <li class="list-group-item">Unlimited public wikis</li>
+      <li class="list-group-item">Unlimited private wikis</li>
+      <li class="list-group-item">24/7 email support</li>
+      <li class="btn btn-success btn-lg"> select</li>
+    </ul>
+  </div>
+</div>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
