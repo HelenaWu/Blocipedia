@@ -12,7 +12,16 @@
     <ul class="nav nav-tabs">
       <div class="nav nav-tabs navbar-left">
         <li><%= link_to "Discover", wiki_index_path %></li>
-        <li><%= link_to "Pricing", new_user_registration_path %></li>
+        <% if current_user && current_user.tier == 'free' %>
+          <li><%= link_to "Upgrade", new_charge_path, method: :get %></li>
+        <% elsif current_user && current_user.tier == 'premium' %>  
+        <% else %>
+          <li><%= link_to "Pricing", pricing_index_path %></li>
+        <% end %>
+        <% if current_user %>
+          <li><%= link_to "Create new wiki", new_wiki_path %></li>
+          <li><%= link_to "My wikis", user_path(current_user) %></li>
+        <% end %>
       </div>
       <div class="nav nav-tabs navbar-right">
         <% if !current_user.present? %>
@@ -23,9 +32,17 @@
         <% end %>                    
       </div>
     </ul>
+
     <% if notice %>
-    <div class="alert alert-info"><%= notice %></div>
+      <div class="alert alert-info"><%= notice %></div>
     <% end %>
+    <% if flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-warning"><%= flash[:alert] %></div>
+    <% end %>
+
     <%= yield %>
   </div>
 </body>

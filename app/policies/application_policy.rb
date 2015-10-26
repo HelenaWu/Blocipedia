@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    user.present?
+    true
   end
 
   def show?
@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    user.present?
+    @user.present?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present? && (record.user == user || user.admin?)
+    @user.present? && (record.user_id.to_i == @user.id.to_i || @user.admin?)
   end
 
   def edit?

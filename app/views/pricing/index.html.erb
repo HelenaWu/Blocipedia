@@ -1,0 +1,21 @@
+<h2>Plans</h2>
+<div class="container">
+  <div class="row">
+    <ul class="list-group col-sm-6">
+      <li class="list-group-item list-group-item-success">FREE</li>
+      <li class="list-group-item">Free</li>
+      <li class="list-group-item">Unlimited public wikis</li>
+      <li class="list-group-item">No private wiki</li>
+      <li class="list-group-item">No suppport</li>
+      <div id="plan_button" class="btn btn-success btn-lg"> <%= link_to 'Select free account', new_user_registration_path %> <div>
+ </ul>
+    <ul class="list-group col-sm-6">
+      <li class="list-group-item list-group-item-warning">PREMIUM</li>
+      <li class="list-group-item">$15.00/mo</li>
+      <li class="list-group-item">Unlimited public wikis</li>
+      <li class="list-group-item">Unlimited private wikis</li>
+      <li class="list-group-item">24/7 email support</li>
+      <div id="plan_button" class="btn btn-warning btn-lg"> <%= link_to 'Upgrade', new_user_registration_path(tier: "PREMIUM") %> <div>
+    </ul>
+  </div>
+</div>

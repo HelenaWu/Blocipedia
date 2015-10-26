@@ -15,6 +15,9 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 
+#Cash$$$
+gem 'stripe'
+
 group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

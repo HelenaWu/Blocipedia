@@ -1,9 +1,11 @@
 <div class="jumbotron">
   <h1>Welcome to Blocipedia</h1>
   <p>The most fun you'd ever have writing stuff on the internet!</p>
-  <p class="btn btn-primary btn-lg"><%= link_to "Sign up!", new_user_registration_path %></p>
+  <% if !current_user %>
+    <p class="btn btn-primary btn-lg"><%= link_to "Sign up!", new_user_registration_path %></p>
+  <% end %>
 </div>
 <div class="container">
   <h1> Trending wikis</h1>
-  <!-- Render random public wikis-->
+  <%= render 'wiki/wiki', locals: {wikis: @wikis} %>
 <div>

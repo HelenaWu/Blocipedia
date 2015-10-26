@@ -7,15 +7,15 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :wikis  
 
   def admin?
-    role == 'admin'
+    tier == 'admin'
   end
 
   def premium?
-    role == 'premium'
+    tier == 'premium'
   end
 
   def free?
-    role == 'free'    
+    tier == 'free'    
   end
 
 end

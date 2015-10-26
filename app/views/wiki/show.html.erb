@@ -1,0 +1,9 @@
+<div class="jumbotron">
+  <% if policy(@wiki).edit? %>
+    <%= link_to 'edit wiki', edit_wiki_path %>
+  <% end %></br>
+  <p>Visibility: <%= @wiki.level%></p>
+  <h3><span class="glyphicon glyphicon-record"><%= @wiki.subject %></span></h3>
+  </br>
+  <div class="col-md-offset-1"><%= @wiki.body %></div>
+</div>

@@ -1,0 +1,3 @@
+<% locals[:wikis].each do |wiki| %>
+  <p><%= link_to wiki.subject, wiki_path(wiki.id) %></p>
+<% end %>

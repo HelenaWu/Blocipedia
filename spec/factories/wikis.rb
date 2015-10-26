@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :wiki do
-    subject "MyString"
-level "MyString"
-body "MyText"
-user nil
+    subject "Some wiki title"
+    level "public"
+    body "MyText"
+    user_id "1"
   end
-
 end
