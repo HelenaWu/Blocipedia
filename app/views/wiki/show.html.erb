@@ -3,7 +3,7 @@
     <%= link_to 'edit wiki', edit_wiki_path %>
   <% end %></br>
   <p>Visibility: <%= @wiki.level%></p>
-  <h3><span class="glyphicon glyphicon-record"><%= @wiki.subject %></span></h3>
+  <h3><%= markdown_to_html @wiki.subject %></h3>
   </br>
-  <div class="col-md-offset-1"><%= @wiki.body %></div>
+  <div class="col-md-offset-1"><%= markdown_to_html @wiki.body %></div>
 </div>

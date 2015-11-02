@@ -29,12 +29,14 @@ class WikiController < ApplicationController
   def edit
     @wiki = Wiki.find(params[:id])
     authorize @wiki
+    @collaboration = @wiki.collaborations.new
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
+    authorize @wiki    
     if @wiki.update_attributes(wiki_params)
+
       flash[:notice] = "succesfully updated wiki entry."
       redirect_to wiki_path(@wiki)
     else
@@ -48,6 +50,6 @@ class WikiController < ApplicationController
 
   private
   def wiki_params
-    params.require(:wiki).permit(:subject, :body, :level)
+    params.require(:wiki).permit(:subject, :body, :level, :collaboration)
   end
 end

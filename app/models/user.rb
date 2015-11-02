@@ -4,7 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_and_belongs_to_many :wikis  
+  has_many :wikis # wikis owned by this user
+  has_many :collaborations
+  has_many :collaborated_wikis, through: :collaborations, source: :wiki
+
+  # Sample code using new associations
+  # current_user.wikis # returns owned wikis by current_user
+  # current_user.collaborations # returns collaborations this user is involved in
+  # current_user.collaborated_wikis
 
   def admin?
     tier == 'admin'
