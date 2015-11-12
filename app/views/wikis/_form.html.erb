@@ -1,5 +1,5 @@
 <div class="container col-md-6 col-md-offset-3">
-  <%= form_for locals[:wiki], url: locals[:path] do |f| %>
+  <%= form_for wiki do |f| %>
     <div class="form-group">
       <%= f.label :Wiki_Visibility %>
       <% if current_user.tier == 'premium' %>
@@ -17,14 +17,11 @@
       <%= f.label :body %>
       <%= f.text_area :body, rows: '25', class: 'form-control'%>
     </div>
-    <% if locals[:collab] %>
+    <% if defined? collab %>
     <div class="form-group">
-      <%= fields_for(locals[:collab]) do |c| %>
+      <%= fields_for(collab) do |c| %>
         <%= c.label :add_a_collaborator %>
         <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
-        <%= c.hidden_field :wiki, value: locals[:wiki] %>
-        <!-- sorry... this is as close to creating a collaboration as I got T_T, still nothing inserted into DB -->
-        <%= c.submit %>
       <% end %>
     <% end %>
     </div>

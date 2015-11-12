@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError do |e|
     flash[:error] = "Sorry you are not authorized to perform this action."
-    redirect_to wiki_index_path
+    redirect_to wikis_path
   end
 
   def after_sign_in_path_for(resource)

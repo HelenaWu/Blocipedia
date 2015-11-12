@@ -1,4 +1,4 @@
-class WikiController < ApplicationController
+class WikisController < ApplicationController
   def index
     @wikis = Wiki.where(level: 'public')
   end
@@ -20,7 +20,7 @@ class WikiController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "wiki has been created successfully."
-      redirect_to wiki_index_path
+      redirect_to wikis_path
     else
       flash[:error] = "there was a problem creating the wiki."
       render :new
@@ -34,7 +34,12 @@ class WikiController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki    
+    authorize @wiki
+    if params[:collaboration][:user]
+      @user = User.find_by!(email: params[:collaboration][:user])
+      @wiki.collaborations.create!(user: @user)
+    end
+
     if @wiki.update_attributes(wiki_params)
 
       flash[:notice] = "succesfully updated wiki entry."
@@ -50,6 +55,6 @@ class WikiController < ApplicationController
 
   private
   def wiki_params
-    params.require(:wiki).permit(:subject, :body, :level, :collaboration)
+    params.require(:wiki).permit(:subject, :body, :level)
   end
 end

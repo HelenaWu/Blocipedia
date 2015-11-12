@@ -1,10 +1,4 @@
-
 class ChargesController < ApplicationController
- @amount = 1500
-  def getDefaultAmt
-    @amount
-  end
-
   def create
     #Create a strip customer object
     customer = Stripe::Customer.create(
@@ -14,7 +8,7 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: 1500,
+      amount: Payment.default_in_usd_cents,
       description: "Blocipedia premium subscription",
       currency: 'usd'
       )
@@ -33,7 +27,7 @@ class ChargesController < ApplicationController
      @stripe_btn_data = {
        key: "#{ Rails.configuration.stripe[:publishable_key] }",
        description: "Blocipedia Premium",
-       amount: @amount
+       amount: Payment.default_in_usd_cents
       }    
   end
 end

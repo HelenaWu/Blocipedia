@@ -5,8 +5,7 @@ FactoryGirl.define do
     end
 
     email "helena.wu87@gmail.com"
-    passowrd "helloworld"
-    name "helena"
+    password "helloworld"
 
     before(:create) do |user, evaluator| 
       user.skip_confirmation! if evaluator.skip_confirmation
