@@ -1,5 +1,5 @@
-<div class="container text-center">
 <%= form_tag charges_path do %>
+<div class="container text-center">
    <h2>Upgrade to Premium for all of these amazing perks!</h2>
     <ul class="list-group col-sm-6 col-sm-offset-3">
       <li class="list-group-item list-group-item-warning">PREMIUM</li>
@@ -7,7 +7,6 @@
       <li class="list-group-item">Unlimited private wikis</li>
       <li class="list-group-item">24/7 email support</li>
     </ul>
-   </div>
    <div class="col-sm-6 col-sm-offset-3">
     <script class='stripe-button' 
       src="https://checkout.stripe.com/checkout.js" 
@@ -17,7 +16,6 @@
       data-label="I want to upgrade"
       data-panel-label="Upgrade now"
        ></script>
-  </div>
- <% end %>
-
+    </div>
 </div>
+ <% end %>

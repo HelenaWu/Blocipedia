@@ -35,7 +35,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    if params[:collaboration][:user]
+    if params[:collaboration][:user] != ""
       @user = User.find_by!(email: params[:collaboration][:user])
       @wiki.collaborations.create!(user: @user)
     end
@@ -51,6 +51,16 @@ class WikisController < ApplicationController
   end
 
   def destroy
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
+    if @wiki.destroy
+      flash[:notice] = "wiki has been removed."
+      redirect_to wikis_path
+    else
+      flash[:error] = "there was a problem deleting the wiki."
+      redirect_to wiki_path(@wiki)
+    end
+
   end
 
   private

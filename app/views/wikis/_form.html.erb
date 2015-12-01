@@ -23,8 +23,8 @@
         <%= c.label :add_a_collaborator %>
         <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
       <% end %>
-    <% end %>
     </div>
+    <% end %>
   <%=f.submit "Post"%>
   <% end %>
 

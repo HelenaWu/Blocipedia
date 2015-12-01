@@ -2,6 +2,10 @@
   <% if policy(@wiki).edit? %>
     <%= link_to 'edit wiki', edit_wiki_path %>
   <% end %></br>
+  <% if policy(@wiki).destroy? %>
+    <%= link_to 'delete wiki', wiki_path(@wiki), method: :delete %>
+  <% end %></br>
+  
   <p>Visibility: <%= @wiki.level%></p>
   <h3><%= markdown_to_html @wiki.subject %></h3>
   </br>
