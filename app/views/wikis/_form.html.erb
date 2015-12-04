@@ -14,16 +14,30 @@
       <%= f.text_field :subject, class: 'form-control' %>
     </div>
     <div class="form-group"> 
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: '25', class: 'form-control'%>
+      <div id="epiceditor">
+        <%= f.label :body %>
+        <script type="text/javascript">
+        <!-- Question: overlapping text areas?--> 
+          var editor = new EpicEditor().load();
+        </script>
+       <%= f.text_area :body, rows: '25', class: 'form-control'%>
+      </div>
     </div>
-    <% if defined? collab %>
-    <div class="form-group">
-      <%= fields_for(collab) do |c| %>
-        <%= c.label :add_a_collaborator %>
-        <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
+    <% if defined? collab  %>
+      <div class="form-group">
+        <%= fields_for(collab) do |c| %>
+          <%= c.label :add_a_collaborator %>
+          <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if defined? collaborations%>
+      <% if policy(wiki).destroy? %> 
+        <p> Collaborators: </p>
+        <% wiki.collaborators.each do |c| %>
+          c.email: 
+        <% end %>
       <% end %>
-    </div>
     <% end %>
   <%=f.submit "Post"%>
   <% end %>

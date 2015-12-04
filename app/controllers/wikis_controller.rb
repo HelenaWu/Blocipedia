@@ -4,7 +4,7 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
+    set_wiki
     authorize @wiki
   end
   def new
@@ -14,9 +14,7 @@ class WikisController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params) 
     authorize @wiki 
-    if current_user
-      @wiki.user_id = current_user.id
-    end
+    @wiki.user_id = current_user.id
 
     if @wiki.save
       flash[:notice] = "wiki has been created successfully."
@@ -27,13 +25,14 @@ class WikisController < ApplicationController
     end
   end
   def edit
-    @wiki = Wiki.find(params[:id])
+    set_wiki
     authorize @wiki
     @collaboration = @wiki.collaborations.new
+    @collaborations = @wiki.collaborations
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    set_wiki
     authorize @wiki
     if params[:collaboration][:user] != ""
       @user = User.find_by!(email: params[:collaboration][:user])
@@ -51,7 +50,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    set_wiki
     authorize @wiki
     if @wiki.destroy
       flash[:notice] = "wiki has been removed."
@@ -64,6 +63,9 @@ class WikisController < ApplicationController
   end
 
   private
+  def set_wiki
+    @wiki = Wiki.friendly.find(params[:id])
+  end
   def wiki_params
     params.require(:wiki).permit(:subject, :body, :level)
   end

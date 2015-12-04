@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    @user.present? && (record.user_id.to_i == @user.id.to_i || @user.admin?)
+    @user.present? && (record.user == @user || @user.admin?)
   end
 
   def edit?

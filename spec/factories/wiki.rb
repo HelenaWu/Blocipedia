@@ -3,6 +3,6 @@ FactoryGirl.define do
     subject "Some wiki title"
     level "public"
     body "MyText"
-    user_id "1"
+    user
   end
 end

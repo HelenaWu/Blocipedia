@@ -15,6 +15,8 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'redcarpet'
+gem 'friendly_id', '~> 5.1.0'
+gem 'epic-editor-rails'
 
 #Cash$$$
 gem 'stripe'

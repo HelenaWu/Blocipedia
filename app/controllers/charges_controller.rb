@@ -15,9 +15,13 @@ class ChargesController < ApplicationController
 
       flash[:notice] = "Payment successfully processed. Thanks for upgrading to premium user."
       current_user.tier = "premium"
-      current_user.save
-      redirect_to user_path(current_user)
-
+      if current_user.save
+        flash[:notice] = 'current user sucessfully saved.'
+        redirect_to user_path(current_user)
+      else
+        flash[:error] = 'There was a problem saving the user.'
+        redirect_to new_charge_path
+      end
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_charge_path

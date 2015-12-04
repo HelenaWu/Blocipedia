@@ -1,6 +1,9 @@
 require 'faker'
 
 #Create users
+# User.destroy_all
+# Wiki.destroy_all
+
 10.times do
   User.create!(
     name: Faker::Name.name,
@@ -22,14 +25,16 @@ levels = ['public', 'private']
 end
 wikis = Wiki.all
 
-50.times do
+collab_users = users.to_a
+collab_wikis = wikis.to_a
+10.times do
   Collaboration.create!(
-    user: users.sample,
-    wiki: wikis.sample
+    user: collab_users.shift,
+    wiki: collab_wikis.shift
   )
 end
   
 collabs = Collaboration.all
-puts "#{users.count} users created!"
-puts "#{wikis.count} wikis created!"
+puts "#{User.count} users created!"
+puts "#{Wiki.count} wikis created!"
 puts "#{collabs.count} collaborations created!"

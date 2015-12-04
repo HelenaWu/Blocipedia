@@ -1,7 +1,6 @@
-<% if current_user && current_user.id.to_i == params[:id].to_i%>
+<% if current_user && current_user == @user%>
   <h2>Hello <%= current_user.email %></h2>
   <p><%= link_to "Account Settings", edit_user_registration_path, class: 'btn btn-info', id: 'account_settings' %></>
   <h3>All wikis created:</h3>
   <%= render partial: 'wikis/wiki', locals: {wikis: @wikis} %>
-
 <% end %>
