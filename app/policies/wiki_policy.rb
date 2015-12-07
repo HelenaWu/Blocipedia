@@ -20,11 +20,6 @@ class WikiPolicy < ApplicationPolicy
   private
   #allows collaborator to edit wiki
   def has_collaborator(user, record)
-    record.collaborators.each do |c| 
-      if c.email = user.email
-        return true
-      end
-    end
-    return false
+    record.collaborators.exists?(email: user.email)
   end
 end

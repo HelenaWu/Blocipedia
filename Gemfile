@@ -39,6 +39,7 @@ group :development, :test do
   gem 'whenever'
   gem 'faker' 
   gem 'pry-rails'  
+  gem 'puffing-billy'
 end
 
 group :production do

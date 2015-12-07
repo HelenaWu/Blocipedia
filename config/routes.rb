@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'collaborations/destroy'
+
   get 'pricing/index'
   
   devise_for :users
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   resources :wikis
   resources :user, :only => [:show]
   resources :charges, only: [:new, :create]
-  
+  resources :collaborations, only: [:destroy]
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 

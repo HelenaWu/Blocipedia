@@ -17,12 +17,13 @@ feature 'premium user registers' do
 
 
     within_frame "stripe_checkout_app" do 
-      fill_in 'Email', with: 'test@example.org'
-      # fill_in 'Card number', :with => "4242424242424242"
-      page.execute_script(%Q{ $('input#card_number').val('4242 4242 4242 4242'); })
-      page.execute_script(%Q{ $('input#cc-exp').val('12/16'); })
-      fill_in 'CVC', with: '123'
-
+      options = {
+        "email" => 'test@example.org',
+        "card_num" => '4242 4242 4242 4242',
+        "cc_exp" => '12/16',
+        "CVC" => "123"
+      }
+      fill_in_stripe_field(options)
       click_button 'Upgrade now $15.00'
     end
 

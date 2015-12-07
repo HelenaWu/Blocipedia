@@ -8,10 +8,8 @@ def login_without_registration(email, password)
     user = FactoryGirl.create(:user, email: email, password: password, password_confirmation: password)
     user.skip_confirmation!
     user.save
-    # binding.pry
     click_link('Sign in')
     login_with_prior_registration(email, password)
-    #here 401 unauthorized log in?
 end
 
 def login_with_prior_registration(email, password)
@@ -35,4 +33,11 @@ def manual_login_without_reg(email, password)
     current_email.click_link "Confirm my account"
     expect(page).to have_content "Your email address has been successfully confirmed."
     login_with_prior_registration(email, password)
+end
+
+def fill_in_stripe_field(options)
+    fill_in 'Email', with: options["email"]
+    page.execute_script(%Q{ $('input#card_number').val("#{options["card_num"]}"); })
+    page.execute_script(%Q{ $('input#cc-exp').val("#{options["cc_exp"]}"); })
+    fill_in 'CVC', with: options["CVC"]
 end

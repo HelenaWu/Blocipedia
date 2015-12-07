@@ -27,14 +27,14 @@ class WikisController < ApplicationController
   def edit
     set_wiki
     authorize @wiki
-    @collaboration = @wiki.collaborations.new
+    @collaboration = Collaboration.new
     @collaborations = @wiki.collaborations
   end
 
   def update
     set_wiki
     authorize @wiki
-    if params[:collaboration][:user] != ""
+    if !params[:collaboration][:user].blank?
       @user = User.find_by!(email: params[:collaboration][:user])
       @wiki.collaborations.create!(user: @user)
     end

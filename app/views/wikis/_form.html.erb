@@ -15,31 +15,37 @@
     </div>
     <div class="form-group"> 
       <div id="epiceditor">
-        <%= f.label :body %>
-        <script type="text/javascript">
-        <!-- Question: overlapping text areas?--> 
-          var editor = new EpicEditor().load();
-        </script>
-       <%= f.text_area :body, rows: '25', class: 'form-control'%>
       </div>
+      <%= f.text_area :body, rows: '25', class: 'form-control', style: 'display: none'%>
+      <script type="text/javascript">
+        var opts = {
+          textarea: 'wiki_body'
+        }
+        var editor = new EpicEditor(opts).load();
+      </script>
     </div>
     <% if defined? collab  %>
       <div class="form-group">
         <%= fields_for(collab) do |c| %>
           <%= c.label :add_a_collaborator %>
+          <!--Question: is there a good way to exclude the author?-->
           <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
         <% end %>
       </div>
     <% end %>
-    <% if defined? collaborations%>
-      <% if policy(wiki).destroy? %> 
-        <p> Collaborators: </p>
-        <% wiki.collaborators.each do |c| %>
-          c.email: 
+  <%=f.submit "Post"%>
+  <% end %>
+  <% if defined? collaborations%>
+    <% if policy(wiki).destroy? %> 
+      <p> Collaborators: </p>
+      <% collaborations.each do |c| %>
+        <%= content_tag :div, class: 'collab', id: "collaboration-#{c.id}" do %>
+          c.email: <%= c.user.email %>   
+          <%= button_to "X", collaboration_path(c), method: :delete, remote: true  %>
+        <% end %>
+
         <% end %>
       <% end %>
     <% end %>
-  <%=f.submit "Post"%>
-  <% end %>
 
 </div>

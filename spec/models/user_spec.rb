@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+describe User do
+  it "default tier to free" do
+    user = create(:user)
+    expect(user.tier).to eq("free")
+  end
+
 end
+

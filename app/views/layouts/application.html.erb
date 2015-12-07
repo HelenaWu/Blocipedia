@@ -12,9 +12,9 @@
     <ul class="nav nav-tabs">
       <div class="nav nav-tabs navbar-left">
         <li><%= link_to "Discover", wikis_path %></li>
-        <% if current_user && current_user.tier == 'free' %>
+        <% if current_user && current_user.free? %>
           <li><%= link_to "Upgrade", new_charge_path, method: :get %></li>
-        <% elsif current_user && current_user.tier == 'premium' %>  
+        <% elsif current_user && current_user.premium? %>  
         <% else %>
           <li><%= link_to "Pricing", pricing_index_path %></li>
         <% end %>
