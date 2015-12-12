@@ -2,7 +2,7 @@
   <%= form_for wiki do |f| %>
     <div class="form-group">
       <%= f.label :Wiki_Visibility %>
-      <% if current_user.tier == 'premium' %>
+      <% if current_user.tier == 'premium' || wiki.level == 'private' %>
         <%= f.select :level, ['public', 'private']%>
       <% else %>
          Public
