@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.action_mailer.default_url_options = {host: 'https://whispering-badlands-3721.herokuapp.com'}
+  config.action_mailer.default_url_options = {host: 'https://murmuring-forest-3762.herokuapp.com'}
   config.force_ssl = true
 
   # Eager load code on boot. This eager loads most of Rails and
