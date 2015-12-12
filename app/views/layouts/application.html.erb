@@ -19,7 +19,7 @@
           <li><%= link_to "Pricing", pricing_index_path %></li>
         <% end %>
         <% if current_user %>
-          <li><%= link_to "Create new wiki", new_wiki_path %></li>
+          <li><%= link_to "Create new wiki", new_wiki_path, data: {no_turbolink: true} %></li>
           <li><%= link_to "My wikis", user_path(current_user) %></li>
         <% end %>
       </div>

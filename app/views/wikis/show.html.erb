@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <% if policy(@wiki).edit? %>
-    <%= link_to 'edit wiki', edit_wiki_path %>
+    <%= link_to 'edit wiki', edit_wiki_path, data: {no_turbolink: true} %>
   <% end %></br>
   <% if policy(@wiki).destroy? %>
     <%= link_to 'delete wiki', wiki_path(@wiki), method: :delete %>

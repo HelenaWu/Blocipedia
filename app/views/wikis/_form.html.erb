@@ -15,21 +15,21 @@
     </div>
     <div class="form-group"> 
       <div id="epiceditor">
+        <%= f.text_area :body, rows: '25', class: 'form-control', style: 'display: none'%>
+        <script type="text/javascript">
+          var opts = {
+            textarea: 'wiki_body'
+          }
+          var editor = new EpicEditor(opts).load();
+        </script>
       </div>
-      <%= f.text_area :body, rows: '25', class: 'form-control', style: 'display: none'%>
-      <script type="text/javascript">
-        var opts = {
-          textarea: 'wiki_body'
-        }
-        var editor = new EpicEditor(opts).load();
-      </script>
     </div>
     <% if defined? collab  %>
       <div class="form-group">
         <%= fields_for(collab) do |c| %>
           <%= c.label :add_a_collaborator %>
-          <!--Question: is there a good way to exclude the author?-->
-          <%= c.select :user, User.all.collect {|u| [u.email]}, include_blank: true %>
+          <% wiki.non_editors %>
+          <%= c.select :user, wiki.non_editors.collect(&:email), include_blank: true %>
         <% end %>
       </div>
     <% end %>

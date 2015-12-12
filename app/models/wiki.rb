@@ -9,4 +9,8 @@ class Wiki < ActiveRecord::Base
   def private?
     level == 'private'
   end
+  def non_editors
+  	exclude_user_ids = self.collaborators.collect{ |c| c.id} + [self.user.id]
+  	User.where("id not in (?)", exclude_user_ids)
+  end
 end
