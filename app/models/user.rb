@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   # current_user.collaborations # returns collaborations this user is involved in
   # current_user.collaborated_wikis
 
+  def self.emails_starting_with(email)
+    where("email LIKE ?", "#{email}%").order(email: :asc).limit(20).pluck(:email)
+  end
+
   def admin?
     tier == 'admin'
   end

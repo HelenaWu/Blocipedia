@@ -28,8 +28,8 @@
       <div class="form-group">
         <%= fields_for(collab) do |c| %>
           <%= c.label :add_a_collaborator %>
-          <% wiki.non_editors %>
-          <%= c.select :user, wiki.non_editors.collect(&:email), include_blank: true %>
+          <%= c.email_field :user, list: :emails, 
+                            data: {remote: true, method: :get, url: "/non_editors?wiki_id=#{wiki.id}"}, oninput: 'jQuery(this).change()'%>
         <% end %>
       </div>
     <% end %>

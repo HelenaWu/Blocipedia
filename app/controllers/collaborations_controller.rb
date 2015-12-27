@@ -11,4 +11,14 @@ class CollaborationsController < ApplicationController
       format.js
     end
   end
+
+  def non_editors_emails
+    wiki = Wiki.find(params[:wiki_id])
+    email = params[:collaboration][:user]
+    if email.blank?
+      @emails = []
+    else
+     @emails = wiki.non_editors.emails_starting_with(email) || []
+   end
+  end
 end

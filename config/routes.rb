@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :user, :only => [:show]
   resources :charges, only: [:new, :create]
   resources :collaborations, only: [:destroy]
+  get '/non_editors' => 'collaborations#non_editors_emails'
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
