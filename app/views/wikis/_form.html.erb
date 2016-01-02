@@ -29,8 +29,9 @@
         <%= fields_for(collab) do |c| %>
           <%= c.label :add_a_collaborator %>
           <%= c.email_field :user, list: :emails, 
-                            data: {remote: true, method: :get, url: "/non_editors?wiki_id=#{wiki.id}"}, oninput: 'jQuery(this).change()'%>
+                            data: {remote: true, method: :get, url: "/non_editors?wiki_id=#{wiki.id}"}, oninput: "jQuery(this).change()"%>
         <% end %>
+        <datalist id="emails"> </datalist>
       </div>
     <% end %>
   <%=f.submit "Post"%>

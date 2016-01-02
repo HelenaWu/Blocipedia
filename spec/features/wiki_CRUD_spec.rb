@@ -9,7 +9,6 @@ feature 'wiki CRUD', js: true do
     within_frame("epiceditor-editor-frame") do 
         fill_in "body", with: 'some text'
     end
-
     click_button("Post")
     expect(page).to have_content("wiki has been created successfully.")
   end

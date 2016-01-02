@@ -19,6 +19,7 @@ class CollaborationsController < ApplicationController
       @emails = []
     else
      @emails = wiki.non_editors.emails_starting_with(email) || []
+     logger.debug(@emails)
    end
   end
 end
