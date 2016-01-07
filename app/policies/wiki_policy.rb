@@ -10,7 +10,7 @@ class WikiPolicy < ApplicationPolicy
     @user.present? && (record.user == @user)
   end
   def show?
-    if record.private? && (record.user != user)
+    if record.private? && (record.user != user) && !(has_collaborator(user, record))
       false
     else
       true
